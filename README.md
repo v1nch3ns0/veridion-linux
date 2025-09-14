@@ -15,4 +15,4 @@ at the stage rn, it is a basic but usable linux enviroment
 it was a really REALLY good way to learn the super deep linux internals and its super fun to do,
 i mean when your not dealing with deps but thats beside the point i made it for fun
 ## downloads
-none are available yet but will be soon (BIOS only no UEFI support yet ): )
+check releases (BIOS only no UEFI support yet ): )
