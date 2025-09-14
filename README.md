@@ -1,6 +1,6 @@
 # veridion linux
 veridion linux is a lightweight and super simple systemd free linux distro made by me for fun.
-it uses zeropkg as the package manager, a shell script (POSIX) package manager that is ultra minimal and
+it uses [zeropkg](https://github.com/v1nch3ns0/zeropkg) as the package manager, a shell script (POSIX) package manager that is ultra minimal and
 under less than 200 lines of code.
 ## features
 now it is still in heavy development but it is still (semi) usable
