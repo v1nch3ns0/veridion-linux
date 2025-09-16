@@ -1,0 +1,15 @@
+#!/bin/sh
+main(){ 
+echo "fstabgen v0.01, made by vinchenso"
+local target_disk="$1"
+local mount_point="$2"
+if [ -z "$mount_point" ]||[ -z "$target_disk" ];then
+echo "Usage: fstabgen <target_disk> <mount_point>"
+exit 1
+fi
+[ -f "$mount_point/etc/fstab" ]||touch "$mount_point/etc/fstab"
+echo "UUID=$(blkid -s UUID -o value ${target_disk}1) /boot/efi vfat defaults 0 2" >> "$mount_point/etc/fstab"
+echo "UUID=$(blkid -s UUID -o value ${target_disk}2) / ext4 defaults 0 1" >> "$mount_point/etc/fstab"
+echo "Generated fstab."
+}
+main "$@"

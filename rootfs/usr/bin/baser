@@ -1,0 +1,31 @@
+#!/bin/sh
+set -e
+main(){
+echo "baser v0.01, made by vinchenso"
+echo "------------------------------"
+local target_disk="$1"
+local rootfs_archive="$2"
+local mount_point="/mnt/install"
+if [ -z "$target_disk" ]||[ -z "$rootfs_archive" ]; then
+echo "Usage: baser <target_disk> <rootfs_archive.tar.gz>"
+exit 1
+fi
+if [ ! -b "$target_disk" ]; then
+echo "Error: $target_disk is not a disk."
+exit 1
+fi
+if [ ! -f "$rootfs_archive" ]; then
+echo "Error: rootfs archive not found: $rootfs_archive"
+exit 1
+fi
+echo "Mounting the disk (make sure it’s partitioned and formatted) ..."
+mount "${target_disk}2" "$mount_point"
+echo "Copying and unpacking the rootfs..."
+archive_name=$(basename "$rootfs_archive")
+cp "$rootfs_archive" "$mount_point/"
+gzip -d "$mount_point/$archive_name"
+tar xf "$mount_point/${archive_name%.gz}" -C "$mount_point"
+rm -f "$mount_point/${archive_name%.gz}"
+echo "Rootfs unpacked to '$mount_point'. Mount any additional partitions (like boot/efi) inside '$mount_point', then run 'chroot $mount_point' to continue setup."
+}
+main

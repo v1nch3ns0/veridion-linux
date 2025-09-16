@@ -1,0 +1,10 @@
+#!/bin/busybox-1.35.0-x86_64-linux-musl sh
+# rcS
+
+/bin/busybox-1.35.0-x86_64-linux-musl mount -t proc proc /proc
+/bin/busybox-1.35.0-x86_64-linux-musl mount -t sysfs sys /sys
+/bin/busybox-1.35.0-x86_64-linux-musl mount -t devtmpfs devtmpfs /dev
+/bin/busybox-1.35.0-x86_64-linux-musl mount -t tmpfs tmpfs /tmp
+[ ! -e /lib64 ] && /bin/busybox-1.35.0-x86_64-linux-musl ln -s /lib /lib64
+/bin/busybox-1.35.0-x86_64-linux-musl --install -s /bin
+hostname veridion
